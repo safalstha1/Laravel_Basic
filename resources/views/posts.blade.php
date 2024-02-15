@@ -4,12 +4,20 @@
 <link rel="stylesheet" href="/app.css">
 
 <body>
-<?php foreach ($posts as $post) : ?>
+
+@foreach($posts as $post)
+    @dd($loop)
 <article>
-       <a href="/posts/<?= $post-> slug; ?>">
+       <a href="/posts/{{$post-> slug}}">
            <h1> <?= $post->title; ?></h1>
+           {{$post->title}}
        </a>
-    <div> <?= $post->excerpt; ?></div>
+    <div>
+
+{{--            <?= $post->excerpt; ?>--}}
+        {{ $post->excerpt}}
+
+    </div>
 
     <div><br>
         <a href="/posts/<?= $post-> slug; ?>"> Read More.....</a>
@@ -17,7 +25,7 @@
 
 </article>
 
-<?php endforeach; ?>
+@endforeach
 
 
 
