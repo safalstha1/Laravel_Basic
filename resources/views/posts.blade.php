@@ -1,33 +1,23 @@
-<!doctype html>
+@extends('layout')
 
-<title>My Blog</title>
-<link rel="stylesheet" href="/app.css">
+@section('banner')
+    <h1> My Blogs</h1>
+@endsection
+@section('content')
+    @foreach($posts as $post)
 
-<body>
+        <article>
+            <a href="/posts/{{$post-> slug}}">
+                <h1>  {{$post->title}}</h1>
 
-@foreach($posts as $post)
-    @dd($loop)
-<article>
-       <a href="/posts/{{$post-> slug}}">
-           <h1> <?= $post->title; ?></h1>
-           {{$post->title}}
-       </a>
-    <div>
-
-{{--            <?= $post->excerpt; ?>--}}
-        {{ $post->excerpt}}
-
-    </div>
-
-    <div><br>
-        <a href="/posts/<?= $post-> slug; ?>"> Read More.....</a>
-    </div>
-
-</article>
-
-@endforeach
-
-
-
-</body>
-
+            </a>
+            <div>
+                {{--            <?= $post->excerpt; ?>--}}
+                {{ $post->excerpt}}
+            </div>
+            <div><br>
+                <a href="/posts/<?= $post-> slug; ?>"> Read More.....</a>
+            </div>
+        </article>
+    @endforeach
+@endsection
