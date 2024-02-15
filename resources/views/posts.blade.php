@@ -10,9 +10,16 @@
            <h1> <?= $post->title; ?></h1>
        </a>
     <div> <?= $post->excerpt; ?></div>
-    <a><?= $post->date; ?></a>
+
+    <div><br>
+        <a href="/posts/<?= $post-> slug; ?>"> Read More.....</a>
+    </div>
+
 </article>
+
 <?php endforeach; ?>
+
+
 
 </body>
 
