@@ -8,6 +8,8 @@
 
             </a>
             <p>
+                By <a href="/authors/{{$post->author->id}}">{{$post->author->name}} </a> in</a>
+
                 <a href="/categories/{{$post-> category -> slug}}">Category:{{$post->category->name}}</a>
             </p>
             <div>
