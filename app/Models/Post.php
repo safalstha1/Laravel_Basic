@@ -15,6 +15,4 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class); //eloquent relationship
     }
-
-//    protected $fillable = ['title','excerpt', 'body', 'id'];
 }
