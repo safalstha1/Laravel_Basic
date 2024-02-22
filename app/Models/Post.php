@@ -2,20 +2,13 @@
 
 namespace App\Models;
 
-use App\Jobs\SendPostNotificationToAdmin;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use  \Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Post extends Model
 {
 
-    protected static function booted()
-    {
-        static::created(function ($post) {
-            // Dispatch the job when a new post is created
-            dispatch(new SendPostNotificationToAdmin($post));
-        });
-    }
     use HasFactory;
 
     protected $guarded = [];
@@ -27,6 +20,11 @@ class Post extends Model
         $query
             ->where('title', 'like', '%' . $search . '%')
             ->orWhere('body', 'like', '%' . $search . '%'));
+        $query->when($filters['category'] ?? false, fn($query, $category) =>
+        $query->whereHas('category', fn ($query) =>
+        $query->where('slug', $category)
+        )
+        );
     }
 
     public function category(): BelongsTo
